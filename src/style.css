@@ -1,1 +1,70 @@
 @import "~bootstrap/dist/css/bootstrap.min.css";
+
+body {
+  background-image: url(https://www.jotdown.es/wp-content/uploads/2023/09/rueda-casino.jpg);
+  background-size: cover;
+  margin: 0;
+  padding: 0;
+}
+
+body h1 {
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  text-transform: uppercase;
+  margin-top: 20px;
+}
+
+.container {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+}
+
+.card {
+  width: 350px;
+  height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+}
+
+.card-number {
+  display: inline-block;
+  justify-content: left;
+  align-content: end;
+  margin: 10px;
+  padding: 30px;
+}
+
+.card-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  padding: 30px;
+  font-size: 60px;
+}
+
+.card-number2 {
+  display: inline-block;
+  justify-content: left;
+  align-content: end;
+  margin: 10px;
+  padding: 30px;
+  transform: rotate(180deg);
+}
+
+.btn {
+  background-color: green;
+  color: white;
+  text-transform: uppercase;
+}
+
+.col-4 {
+  justify-content: center;
+}
