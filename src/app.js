@@ -2,13 +2,10 @@ import "bootstrap";
 import "./style.css";
 
 window.onload = () => {
-  const generateCardsDetails = () => {
-    const cardNumber1 = document.getElementById("number1");
-    const cardNumber2 = document.getElementById("number2");
-    const cardNumber3 = document.getElementById("number3");
-
-    const cardIcon1 = document.getElementById("icon1");
-    const cardIcon2 = document.getElementById("icon2");
+  /* funcion para generar las cartas de manerea aleatoria por color y iconco */
+  const generateCards = numCards => {
+    const cardContainer = document.getElementById("cardContainer");
+    cardContainer.innerHTML = "";
 
     const number = [
       "A",
@@ -25,39 +22,67 @@ window.onload = () => {
       "Q",
       "K"
     ];
-
     const icon = ["♦", "♥", "♠", "♣"];
 
-    const randomNumber = Math.floor(Math.random() * number.length);
-    const randomIcon = Math.floor(Math.random() * icon.length);
+    for (let i = 0; i < numCards; i++) {
+      const randomNumber = Math.floor(Math.random() * number.length);
+      const randomIcon = Math.floor(Math.random() * icon.length);
+      const selecNumber = number[randomNumber];
+      const selecIcon = icon[randomIcon];
 
-    const selecNumber = number[randomNumber];
-    const selecIcon = icon[randomIcon];
+      /* la seleccion aleatoria de numeros e iconos, la paso al modelo de carta atraves el dom */
+      const cardDiv = document.createElement("div");
+      cardDiv.classList.add("col-2", "m-1");
+      cardDiv.innerHTML = `
+        <div class="card">
 
-    cardNumber1.innerHTML = selecNumber;
-    cardNumber2.innerHTML = selecNumber;
-    cardNumber3.innerHTML = selecNumber;
+          <div class="card-number">${selecNumber}</div>
+          <div class="card-number">${selecIcon}</div>
+          
+          <div class="card-center">${selecNumber}</div>
 
-    cardIcon1.innerHTML = selecIcon;
-    cardIcon2.innerHTML = selecIcon;
+          <div class="card-number2">${selecIcon}</div>
+          <div class="card-number2">${selecNumber}</div>
+          
+        </div>
+      `;
 
-    if (selecIcon === "♦" || selecIcon === "♥") {
-      cardNumber1.style.color = "red";
-      cardNumber2.style.color = "red";
-      cardNumber3.style.color = "red";
-      cardIcon1.style.color = "red";
-      cardIcon2.style.color = "red";
-    } else {
-      cardNumber1.style.color = "black";
-      cardNumber2.style.color = "black";
-      cardNumber3.style.color = "black";
-      cardIcon1.style.color = "black";
-      cardIcon2.style.color = "black";
+      /* segun el icono que me arroje, si es uno será color negro, sino color rojo */
+      if (selecIcon === "♦" || selecIcon === "♥") {
+        cardDiv.style.color = "red";
+      } else {
+        cardDiv.style.color = "black";
+      }
+
+      cardContainer.appendChild(cardDiv);
     }
   };
 
-  generateCardsDetails();
+  /* funcion sorteoButton recoge el valor ingresado por el usuario al darle el boton sorteo */
+  const sorteoButton = document.getElementById("sorteoButton");
+  sorteoButton.addEventListener("click", () => {
+    const numCardsInput = document.getElementById("numCardsInput").value;
+    generateCards(numCardsInput);
+  });
 
-  const changeCardButton = document.getElementById("changeCardButton");
-  changeCardButton.addEventListener("click", generateCardsDetails);
+  /* funcion clasificacionButton ordena las cartas de menor a mayor que fueron arrojadas cuando el ususario presionó el boton sorteoButton */
+  const clasificacionButton = document.getElementById("clasificacionButton");
+  clasificacionButton.addEventListener("click", () => {
+    /* Obtener todas las cartas */
+    const cardContainer = document.getElementById("cardContainer");
+    const cards = Array.from(cardContainer.getElementsByClassName("col-2"));
+
+    /* Ordenar las cartas por el valor de su primer número (selecNumber) */
+    cards.sort((a, b) => {
+      const numberA = a.querySelector(".card-number").textContent;
+      const numberB = b.querySelector(".card-number").textContent;
+      return numberA.localeCompare(numberB, undefined, { numeric: true });
+    });
+
+    /* Limpiar el contenedor de cartas y agregarlas en el nuevo orden */
+    cardContainer.innerHTML = "";
+    cards.forEach(card => {
+      cardContainer.appendChild(card);
+    });
+  });
 };

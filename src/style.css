@@ -11,51 +11,44 @@ body h1 {
   color: white;
   display: flex;
   justify-content: center;
-  align-content: center;
   text-transform: uppercase;
-  margin-top: 20px;
+  margin-top: 10px;
 }
 
-.container {
+.h1 {
+  color: white;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin-top: 50px;
+  text-transform: uppercase;
+  margin-top: 10px;
+  font-size: 16px;
 }
 
 .card {
-  width: 350px;
-  height: 500px;
+  width: 140px;
+  height: 230px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  justify-content: space-around;
   border-radius: 20px;
+  padding: 10px;
 }
 
 .card-number {
   display: inline-block;
   justify-content: left;
   align-content: end;
-  margin: 10px;
-  padding: 30px;
 }
 
 .card-center {
   display: flex;
   justify-content: center;
   align-items: center;
-  margin: 10px;
-  padding: 30px;
-  font-size: 60px;
+  font-size: 20px;
 }
 
 .card-number2 {
   display: inline-block;
   justify-content: left;
   align-content: end;
-  margin: 10px;
-  padding: 30px;
   transform: rotate(180deg);
 }
 
@@ -63,8 +56,4 @@ body h1 {
   background-color: green;
   color: white;
   text-transform: uppercase;
-}
-
-.col-4 {
-  justify-content: center;
 }
